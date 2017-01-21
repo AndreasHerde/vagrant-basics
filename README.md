@@ -11,6 +11,10 @@ here [I'm](http://www.herde.com) gathering all my scripts to do automagic things
 Currently it includes scripts to install and configure:
 
 - Apache
+- Memcache
+- nginx
+- php
+- MySQL
 
 
 ### License.
