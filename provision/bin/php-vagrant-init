@@ -1,0 +1,60 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Copyright 2017 Andreas Herde <batman@herde.com>.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ * This file is maintained at http://github.com/AndreasHerde/vagrant-basics
+ */
+
+// The project root directory.
+// The one where vendor directory is located.
+$myVagrantDir = realpath(__DIR__."/../../../../..");
+
+// The directory of vagrant-prov project.
+$srcDir = $myVagrantDir."/vendor/AndreasHerde/vagrant-basics";
+
+// Default exit code.
+$exit = 0;
+
+echo "Coping Vagrantconf file: ";
+if (file_exists($myVagrantDir."/Vagrantconf")) {
+    echo "ERROR - already exists.\n";
+    $exit = 1;
+} else {
+    exec("cp $srcDir/Vagrantconf $myVagrantDir", $out, $ret1);
+    if ($ret1 === 0) {
+        echo "OK\n";
+    } else {
+        echo "ERROR - coping file.\n";
+        $exit = 1;
+    }
+}
+
+echo "Coping Vagrantfile file: ";
+if (file_exists($myVagrantDir."/Vagrantfile")) {
+    echo "ERROR - already exists.\n";
+    $exit = 1;
+} else {
+    exec("cp $srcDir/Vagrantfile $myVagrantDir", $out, $ret2);
+    if ($ret2 === 0) {
+        echo "OK\n";
+    } else {
+        echo "ERROR - coping file.\n";
+        $exit = 1;
+    }
+}
+
+exit($exit);
